@@ -1,5 +1,19 @@
 # Supervised Machine Learning Challenge
 
+## Running Instructions
+
+Code runs on python 3.7
+
+To install necessary packages use requirements.txt
+
+``` $ pip install -r requirements.txt ```
+
+To run code to train the model run *nn_pytorch.py*. If you have cuda enabled, the script will use it for training, if not it will use CPU.
+
+To run code to just get predictions from my trained model () run *x.py*.
+
+To run code with my experiments run *main.py*.
+
 ## Goal
 
 The objective of this assignment is to train a classifier, attempting to get good generalization performance. You can use whatever tools and methods you wish (within reason), but you're expected to do the work yourself.
