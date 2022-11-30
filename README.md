@@ -2,17 +2,40 @@
 
 ## Running Instructions
 
-Code runs on python 3.7
+### 1.1. Using a virtual environment
 
-To install necessary packages use requirements.txt
+  Code runs on python 3.7
+  
+  ``` python3 -m venv </path/to/new/virtual/environment> ```
+  
+  Go to Scripts folder of your environment
+  
+  ``` python3 cd </path/to/new/virtual/environment/Scripts> ```
+  
+  Activate the environment
+  
+  ``` activate ```
+  
+  To install necessary packages use requirements.txt (in the folder or give path to requirements)
+  
+  ``` pip install -r requirements.txt ```
+  
+  Use the editor of your choice to open code and connect to the environment
 
-``` $ pip install -r requirements.txt ```
+### 1.2. All you need
 
-To run code to train the model run *nn_pytorch.py*. If you have cuda enabled, the script will use it for training, if not it will use CPU.
+python 3.7 + necessary packages 
+  
+  ``` pip install -r requirements.txt ```
 
-To run code to just get predictions from my trained model () run *x.py*.
 
-To run code with my experiments run *main.py*.
+### Code to run
+
+To train the model -> run *nn_pytorch.py*.
+
+To get predictions from my trained model -> run *run_model.py*.
+
+To run code with experiments run *main.py*.
 
 ## Goal
 

@@ -74,32 +74,33 @@ best_clf = clf.fit(X_train, y_train)
 predictions = best_clf.predict(X_val)
 
 # Calculate metrics
+print(best_clf.best_estimator_)
 print(f"Accuracy: {accuracy_score(predictions, y_val)}")
 
-# for key in models.keys():
-#     # Fit the classifier
-#     models[key].fit(X_train, y_train)
-#
-#     # Make predictions
-#     predictions = models[key].predict(X_val)
-#
-#     # Calculate metrics
-#     accuracy[key] = accuracy_score(predictions, y_val)
-#     precision[key] = precision_score(predictions, y_val)
-#     recall[key] = recall_score(predictions, y_val)
-#
-# df_model = pd.DataFrame(index=models.keys(), columns=['Accuracy', 'Precision', 'Recall'])
-# df_model['Accuracy'] = accuracy.values()
-# df_model['Precision'] = precision.values()
-# df_model['Recall'] = recall.values()
-#
-# print(df_model)
-#
-# ax = df_model.plot.barh()
-# ax.legend(
-#     ncol=len(models.keys()),
-#     bbox_to_anchor=(0, 1),
-#     loc='lower left',
-#     prop={'size': 14}
-# )
-# plt.tight_layout()
+for key in models.keys():
+    # Fit the classifier
+    models[key].fit(X_train, y_train)
+
+    # Make predictions
+    predictions = models[key].predict(X_val)
+
+    # Calculate metrics
+    accuracy[key] = accuracy_score(predictions, y_val)
+    precision[key] = precision_score(predictions, y_val)
+    recall[key] = recall_score(predictions, y_val)
+
+df_model = pd.DataFrame(index=models.keys(), columns=['Accuracy', 'Precision', 'Recall'])
+df_model['Accuracy'] = accuracy.values()
+df_model['Precision'] = precision.values()
+df_model['Recall'] = recall.values()
+
+print(df_model)
+
+ax = df_model.plot.barh()
+ax.legend(
+    ncol=len(models.keys()),
+    bbox_to_anchor=(0, 1),
+    loc='lower left',
+    prop={'size': 14}
+)
+plt.tight_layout()
