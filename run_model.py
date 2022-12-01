@@ -1,10 +1,10 @@
-import numpy as np
 import pandas as pd
 from nn_pytorch import Network, Data, DataLoader, y_train
 import torch
+import zipfile
 
 BATCH_SIZE = 32
-OUTPUT_FILE_NAME = "test-o-hat_1.5.txt"
+OUTPUT_FILE_NAME = "test-o-hat.txt"
 PATH = MODEL_NAME = './mymodel_1.5.pth'
 
 data = pd.read_csv('test-i.txt', sep=" ", header=None)
@@ -38,6 +38,7 @@ for data in testloader:
             results.append(str(0))
 
 file.write("\n".join(results))
-
+with zipfile.ZipFile("labels.zip", "w", compression=zipfile.ZIP_DEFLATED) as zf:
+    zf.write(OUTPUT_FILE_NAME)
 
 

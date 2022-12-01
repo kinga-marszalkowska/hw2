@@ -31,9 +31,9 @@ python 3.7 + necessary packages
 
 ### Code to run
 
-To train the model -> run *nn_pytorch.py*.
+To train the model -> run *nn_pytorch.py*. test-o-hat.txt is generated in the root folder.
 
-To get predictions from my trained model -> run *run_model.py*.
+To get predictions from my trained model -> run *run_model.py*. test-o-hat.txt is generated in labels.zip in root folder
 
 To run code with experiments run *main.py*.
 

@@ -7,12 +7,13 @@ from sklearn.model_selection import train_test_split
 from torch.utils.data import Dataset, DataLoader
 from torch.optim.lr_scheduler import StepLR
 import random
+import zipfile
 
 EPOCHS = 100
 BATCH_SIZE = 32
 LEARNING_RATE = 0.001
-OUTPUT_FILE_NAME = "test-o-hat_1.6.txt"
-MODEL_NAME = './mymodel_1.6.pth'
+OUTPUT_FILE_NAME = "test-o-hat.txt"
+MODEL_NAME = './mymodel_1.7.pth'
 
 # set seeds for reproducibility of results
 torch.manual_seed(123)
@@ -37,7 +38,9 @@ class Network(nn.Module):
     def __init__(self, input_dim, output_dim):
         super(Network, self).__init__()
         self.linear_relu_stack = nn.Sequential(
-            nn.Linear(input_dim, 128),
+            nn.Linear(input_dim, 256),
+            nn.ReLU(),
+            nn.Linear(256, 128),
             nn.ReLU(),
             nn.Linear(128, 64),
             nn.ReLU(),
@@ -188,13 +191,20 @@ if __name__ == '__main__':
                             shuffle=True, num_workers=2
                             )
 
+    file = open(OUTPUT_FILE_NAME, "a")
+    results = []
+
     for data in testloader:
         inputs, _ = data
         outputs = clf(inputs)
 
-        with open(OUTPUT_FILE_NAME, "a") as f:
-            for i in outputs:
-                if i >= 0.5:
-                    f.write(str(1) + "\n")
-                else:
-                    f.write(str(0) + "\n")
+        for i in outputs:
+            if i >= 0.5:
+                results.append(str(1))
+            else:
+                results.append(str(0))
+
+    file.write("\n".join(results))
+
+    with zipfile.ZipFile("labels.zip", "w", compression=zipfile.ZIP_DEFLATED) as zf:
+        zf.write(OUTPUT_FILE_NAME)
