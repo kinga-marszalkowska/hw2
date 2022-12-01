@@ -13,7 +13,7 @@ EPOCHS = 100
 BATCH_SIZE = 32
 LEARNING_RATE = 0.001
 OUTPUT_FILE_NAME = "test-o-hat.txt"
-MODEL_NAME = './mymodel_1.7.pth'
+MODEL_NAME = './mymodel_1.8.pth'
 
 # set seeds for reproducibility of results
 torch.manual_seed(123)
@@ -37,18 +37,26 @@ with open("test-o-hat-expected.txt", 'w') as file, open(OUTPUT_FILE_NAME, 'w') a
 class Network(nn.Module):
     def __init__(self, input_dim, output_dim):
         super(Network, self).__init__()
+        # self.linear_relu_stack = nn.Sequential(
+        #     nn.Linear(input_dim, 128),
+        #     nn.ReLU(),
+        #     nn.Linear(128, 64),
+        #     nn.ReLU(),
+        #     nn.Linear(64, 32),
+        #     nn.ReLU(),
+        #     nn.Linear(32, 16),
+        #     nn.ReLU(),
+        #     nn.Linear(16, output_dim),
+        # )
+
         self.linear_relu_stack = nn.Sequential(
-            nn.Linear(input_dim, 256),
+            nn.Linear(input_dim, 100),
             nn.ReLU(),
-            nn.Linear(256, 128),
+            nn.Linear(100, 50),
             nn.ReLU(),
-            nn.Linear(128, 64),
+            nn.Linear(50, 20),
             nn.ReLU(),
-            nn.Linear(64, 32),
-            nn.ReLU(),
-            nn.Linear(32, 16),
-            nn.ReLU(),
-            nn.Linear(16, output_dim),
+            nn.Linear(20, output_dim),
         )
 
     def forward(self, x):

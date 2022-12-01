@@ -5,7 +5,7 @@ import zipfile
 
 BATCH_SIZE = 32
 OUTPUT_FILE_NAME = "test-o-hat.txt"
-PATH = MODEL_NAME = './mymodel_1.5.pth'
+PATH = MODEL_NAME = './mymodel_1.8.pth'
 
 data = pd.read_csv('test-i.txt', sep=" ", header=None)
 data.columns = ["f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "f10"]
